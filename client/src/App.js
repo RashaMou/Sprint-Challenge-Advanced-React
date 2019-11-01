@@ -3,19 +3,22 @@ import React from 'react';
 import axios from "axios";
 //Components
 import PlayerList from './components/PlayerList';
+import Header from './components/Header'
 
+export const url = 'http://localhost:5000/api/players'
 
 class App extends React.Component {
   state = {
-    players: []
+    players: [],
   }
 
   componentDidMount() {
     axios
-      .get('http://localhost:5000/api/players')
+      .get(url)
       .then(res => {
-        console.log(res.data)
-        this.setState({players: res.data})
+        this.setState({
+          players: res.data,
+        })
       })
       .catch(err => {
         console.error('Error', err)
@@ -24,11 +27,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <header>
-          <h1>Women's World Cup 2019</h1>
-        </header>
-        <PlayerList players={this.state.players}/>
+      <div className='container'>
+        <Header />
+        {this.state.players.length === 0 ? <h2>Loading...</h2> :
+         <PlayerList players={this.state.players} />
+      }
+       
       </div>
     )
   }

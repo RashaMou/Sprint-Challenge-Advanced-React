@@ -2,12 +2,14 @@ import React from 'react';
 
 const PlayerCard = (props) => {
   return (
-    <div>
-      <h2>{props.player.name}</h2>
-      <ul>
-        <li>{props.player.country}</li>
-        <li>Number of Searches: {props.player.searches}</li>
-      </ul>
+    <div className='card'>
+      <header className="card-header">
+        <h3 className='card-header-title'>{`${props.player.id + 1}`}. {props.player.name}</h3>
+      </header>
+      <div className='card-content'>
+        <h4>{props.player.country}</h4>
+        <h4>No. of searches: {props.player.searches}</h4>
+      </div>
     </div>
     
   )
